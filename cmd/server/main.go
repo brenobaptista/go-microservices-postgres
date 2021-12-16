@@ -11,10 +11,10 @@ import (
 func main() {
 	router := api.NewAPI()
 
-	log.Print("We are up and running!")
+	log.Print("we are up and running!")
 	port := os.Getenv("PORT")
 	err := http.ListenAndServe(fmt.Sprintf(":%s", port), router)
 	if err != nil {
-		log.Printf("Error from router: %v\n", err)
+		log.Printf("error from router: %v\n", err)
 	}
 }
