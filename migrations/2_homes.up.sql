@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS home (
+  id SERIAL PRIMARY KEY,
+  price BIGINT NOT NULL,
+  description VARCHAR NOT NULL,
+  address VARCHAR NOT NULL,
+  agent_id BIGINT
+);
