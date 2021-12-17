@@ -2,20 +2,33 @@ package db
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/go-pg/migrations/v8"
 	"github.com/go-pg/pg/v10"
 )
 
 func NewDB() (*pg.DB, error) {
-	db := pg.Connect(&pg.Options{
-		Addr:     "db:5432",
-		User:     "postgres",
-		Password: "admin",
-	})
+	var opts *pg.Options
+	var err error
+
+	if os.Getenv("ENV") == "PROD" {
+		opts, err = pg.ParseURL(os.Getenv("DATABASE_URL"))
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		opts = &pg.Options{
+			Addr:     "db:5432",
+			User:     "postgres",
+			Password: "admin",
+		}
+	}
+
+	db := pg.Connect(opts)
 
 	collection := migrations.NewCollection()
-	err := collection.DiscoverSQLMigrations("migrations")
+	err = collection.DiscoverSQLMigrations("migrations")
 	if err != nil {
 		return nil, err
 	}
