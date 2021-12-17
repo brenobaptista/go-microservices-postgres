@@ -10,12 +10,12 @@ import (
 )
 
 func main() {
-	_, err := db.NewDB()
+	pgdb, err := db.NewDB()
 	if err != nil {
 		panic(err)
 	}
 
-	router := api.NewAPI()
+	router := api.NewAPI(pgdb)
 
 	log.Print("we are up and running!")
 	port := os.Getenv("PORT")
