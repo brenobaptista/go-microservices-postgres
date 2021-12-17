@@ -25,3 +25,55 @@ func CreateHome(db *pg.DB, req *Home) (*Home, error) {
 
 	return home, err
 }
+
+func GetHome(db *pg.DB, homeID string) (*Home, error) {
+	home := &Home{}
+	err := db.Model(home).
+		Relation("Agent").
+		Where("home.id = ?", homeID).
+		Select()
+
+	return home, err
+}
+
+func GetHomes(db *pg.DB) ([]*Home, error) {
+	homes := make([]*Home, 0)
+	err := db.Model(&homes).
+		Relation("Agent").
+		Select()
+
+	return homes, err
+}
+
+func UpdateHome(db *pg.DB, req *Home) (*Home, error) {
+	_, err := db.Model(req).WherePK().Update()
+	if err != nil {
+		return nil, err
+	}
+
+	home := &Home{}
+	err = db.Model(home).
+		Relation("Agent").
+		Where("home.id = ?", req.ID).
+		Select()
+
+	return home, err
+}
+
+func DeleteHome(db *pg.DB, homeID int64) error {
+	home := &Home{
+		ID: homeID,
+	}
+
+	err := db.Model(home).
+		Relation("Agent").
+		Where("home.id = ?", home.ID).
+		Select()
+	if err != nil {
+		return err
+	}
+
+	_, err = db.Model().WherePK().Delete()
+
+	return err
+}
