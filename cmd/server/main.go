@@ -18,7 +18,6 @@ func main() {
 
 	router := api.NewAPI(pgdb)
 
-	log.Print("we are up and running!")
 	port := os.Getenv("PORT")
 	err = http.ListenAndServe(fmt.Sprintf(":%s", port), router)
 	if err != nil {

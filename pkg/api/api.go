@@ -25,10 +25,6 @@ func NewAPI(pgdb *pg.DB) *chi.Mux {
 		r.Delete("/{homeID}", deleteHomeByID)
 	})
 
-	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("hello world!\n"))
-	})
-
 	return r
 }
 
