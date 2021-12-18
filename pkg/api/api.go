@@ -14,18 +14,18 @@ import (
 )
 
 func NewAPI(pgdb *pg.DB) *chi.Mux {
-	r := chi.NewRouter()
-	r.Use(middleware.Logger, middleware.WithValue("DB", pgdb))
+	router := chi.NewRouter()
+	router.Use(middleware.Logger, middleware.WithValue("DB", pgdb))
 
-	r.Route("/homes", func(r chi.Router) {
-		r.Post("/", createHome)
-		r.Get("/{homeID}", getHomeByID)
-		r.Get("/", getHomes)
-		r.Put("/{homeID}", updateHomeByID)
-		r.Delete("/{homeID}", deleteHomeByID)
+	router.Route("/homes", func(subrouter chi.Router) {
+		subrouter.Post("/", createHome)
+		subrouter.Get("/{homeID}", getHomeByID)
+		subrouter.Get("/", getHomes)
+		subrouter.Put("/{homeID}", updateHomeByID)
+		subrouter.Delete("/{homeID}", deleteHomeByID)
 	})
 
-	return r
+	return router
 }
 
 type HomeRequest struct {
