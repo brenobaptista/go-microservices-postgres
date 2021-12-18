@@ -1,4 +1,4 @@
-module go-microservices-postgres
+module github.com/brenobaptista/go-microservices-postgres
 
 go 1.17
 

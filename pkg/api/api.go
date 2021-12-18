@@ -2,10 +2,11 @@ package api
 
 import (
 	"encoding/json"
-	"go-microservices-postgres/pkg/db"
 	"log"
 	"net/http"
 	"strconv"
+
+	"github.com/brenobaptista/go-microservices-postgres/pkg/db"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"

@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-	"go-microservices-postgres/pkg/api"
-	"go-microservices-postgres/pkg/db"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/brenobaptista/go-microservices-postgres/pkg/api"
+	"github.com/brenobaptista/go-microservices-postgres/pkg/db"
 )
 
 func main() {
