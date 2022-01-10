@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/brenobaptista/go-microservices-postgres/pkg/db"
+	"github.com/brenobaptista/go-microservices-postgres/internal/db"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"

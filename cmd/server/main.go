@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/brenobaptista/go-microservices-postgres/pkg/api"
-	"github.com/brenobaptista/go-microservices-postgres/pkg/db"
+	"github.com/brenobaptista/go-microservices-postgres/internal/api"
+	"github.com/brenobaptista/go-microservices-postgres/internal/db"
 )
 
 func main() {
